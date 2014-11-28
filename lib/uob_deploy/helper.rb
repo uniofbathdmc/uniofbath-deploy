@@ -10,6 +10,7 @@ class UobDeploy
   @templates_dir = File.join(File.dirname(__FILE__), '../templates/')
   @unicorn_deploy_template_name = 'deploy.rb'
   @environment_deploy_template_name = 'digilin01.rb'
+  @new_environment_deploy_template_name = 'new.rb'
 
   # to copy
   @unicorn_template = File.join(@templates_dir, @unicorn_deploy_template_name)
@@ -18,10 +19,11 @@ class UobDeploy
   # output
   @unicorn_deploy = File.join(@config_dir, @unicorn_deploy_template_name)
   @environment_deploy = File.join(@deploy_dir, @environment_deploy_template_name)
+  @new_environment_deploy = File.join(@deploy_dir, @new_environment_deploy_template_name)
 
   # create the deploy.rb file and deployments directory
   def self.init
-    # create a config directory if there isn't one already
+    # mkdir -p config/deployments
     FileUtils.mkdir_p(@deploy_dir)
 
     puts "Creating #{@unicorn_deploy}"
@@ -39,8 +41,14 @@ class UobDeploy
 
   # create a new environment file
   def self.new
-    puts "Checking config/deployments"
+    # mkdir -p config/deployments
+    FileUtils.mkdir_p(@deploy_dir)
 
-    puts "Creating basic deployment file"
+    puts "Creating #{@new_environment_deploy}"
+    unless File.exists?(@new_environment_deploy)
+      FileUtils.cp(@environment_template, @new_environment_deploy)
+    end
+
+    puts "Done"
   end
 end
