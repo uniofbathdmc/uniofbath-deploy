@@ -24,12 +24,12 @@ class UobDeploy
     # create a config directory if there isn't one already
     FileUtils.mkdir_p(@deploy_dir)
 
-    puts "Creating #{unicorn_deploy}"
+    puts "Creating #{@unicorn_deploy}"
     unless File.exists?(@unicorn_deploy)
       FileUtils.cp(@unicorn_template, @unicorn_deploy)
     end
 
-    puts "Creating #{environment_deploy}"
+    puts "Creating #{@environment_deploy}"
     unless File.exists?(@environment_deploy)
       FileUtils.cp(@environment_template, @environment_deploy)
     end
