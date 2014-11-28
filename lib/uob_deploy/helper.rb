@@ -1,22 +1,26 @@
+require 'fileutils'
+
 class UobDeploy
+
+  @config_dir = 'config'
+  @deployments_dir = File.join(@config_dir, 'deployments')
+  @templates_dir = File.join(File.dirname(__FILE__), '../templates/')
+  @deployments_template = File.join(@templates_dir, 'digilin01.rb')
 
   # create the deploy.rb file and deployments directory
   def self.init
-    puts "Checking config directory"
-    unless Dir.exists?('config')
-      puts "Creating directory"
-      Dir.mkdir('config')
-    end
+    # create a config directory if there isn't one already
+    FileUtils.mkdir_p(@deployments_dir)
 
     puts "Creating config/deploy.rb"
-
-    puts "Checking config/deployments directory"
-    unless Dir.exists?('config/deployments')
-      puts "Creating directory"
-      Dir.mkdir('config/deployments')
+    unless File.exists?(@deployments_template)
+      # FileUtils.cp(@deployments_template, @deployments_dir)
     end
 
     puts "Creating basic deployment file"
+    unless File.exists?(@deployments_template)
+      FileUtils.cp(@deployments_template, @deployments_dir)
+    end
 
     puts "Done"
   end
