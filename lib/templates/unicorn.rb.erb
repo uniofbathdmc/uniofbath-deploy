@@ -1,0 +1,51 @@
+
+
+rails_root = '<%= File.join(deploy_to, current_path) %>'
+pid_file   = '<%= File.join(pids_path, 'unicorn.pid') %>'
+app_port   = <%= app_port %>
+log_file   = '<%= File.join(deploy_to, shared_path, 'log/unicorn.log') %>'
+err_log    = '<%= File.join(deploy_to, shared_path, 'log/unicorn.error.log') %>'
+old_pid    = pid_file + '.oldbin'
+
+timeout <%= unicorn_timeout %>
+worker_processes <%= unicorn_worker_processes %>
+
+listen app_port
+pid pid_file
+
+stderr_path err_log
+stdout_path log_file
+
+preload_app true
+
+GC.copy_on_write_friendly = true if GC.respond_to?(:copy_on_write_friendly=)
+
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = "#{rails_root}/Gemfile"
+end
+
+before_fork do |server, worker|
+  # the following is highly recomended for Rails + "preload_app true"
+  # as there's no need for the master process to hold a connection
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
+
+  # Using this method we get 0 downtime deploys.
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
+  end
+end
+
+after_fork do |server, worker|
+  # the following is *required* for Rails + "preload_app true",
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
+
+  # child_pid = server.config[:pid].sub('.pid', ".#{worker.nr}.pid")
+  # system("echo #{Process.pid} > #{child_pid}")
+end
+
