@@ -17,7 +17,7 @@ class UobDeploy
 
   # output
   @unicorn_deploy = File.join(@config_dir, @unicorn_deploy_template_name)
-  @environment_deploy = File.join(@config_dir, @environment_deploy_template_name)
+  @environment_deploy = File.join(@deploy_dir, @environment_deploy_template_name)
 
   # create the deploy.rb file and deployments directory
   def self.init
