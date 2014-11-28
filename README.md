@@ -3,7 +3,7 @@ uob-deploy
 
 Gem for Mina deployment scripts
 
-## To use
+### To use
 
 * Add to Gemfile:
 ```
