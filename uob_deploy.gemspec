@@ -12,6 +12,6 @@ Gem::Specification.new do |spec|
   spec.license     = 'MIT'
 
   # we need mina to use these scripts
-  spec.add_development_dependency 'mina', '0.3.1'
-  spec.add_development_dependency 'mina-unicorn', '0.0.3'
+  spec.add_dependency 'mina', '0.3.1'
+  spec.add_dependency 'mina-unicorn', '0.0.3'
 end
