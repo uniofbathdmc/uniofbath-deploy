@@ -5,9 +5,9 @@ require 'uob_deploy/helper'
 if ARGV[0] == "init"
   UobDeploy.init
 elsif ARGV[0] == "new"
-  UobDeploy.new
+  UobDeploy.generate
 else
   puts "Usage:"
-  puts "init -- create deploy.rb and environment setup"
-  puts "new -- create a new environment file"
+  puts "init     -- create deploy.rb and deployment environment setup"
+  puts "generate -- create a new deployment environment file"
 end

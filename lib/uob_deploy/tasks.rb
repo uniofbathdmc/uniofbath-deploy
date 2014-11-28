@@ -69,8 +69,7 @@ end
 def upload_template
   contents = parse_template
   queue %{echo "-----> Put unicorn file at #{unicorn_deploy_config}"}
-  queue %{echo "#{contents}"}
-  # queue %{echo "#{contents}" > #{unicorn_deploy_config}}
+  queue %{echo "#{contents}" > #{unicorn_deploy_config}}
 end
 
 def parse_template

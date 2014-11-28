@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'uob_deploy'
-  spec.version     = '0.0.3'
+  spec.version     = '0.0.5'
   spec.executables << 'uob_deploy'
   spec.date        = '2014-11-28'
   spec.summary     = "Manage build scripts for a Ruby application"

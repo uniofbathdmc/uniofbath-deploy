@@ -40,7 +40,7 @@ class UobDeploy
   end
 
   # create a new environment file
-  def self.new
+  def self.generate
     # mkdir -p config/deployments
     FileUtils.mkdir_p(@deploy_dir)
 
