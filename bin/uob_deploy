@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'uob_deploy'
+require 'uob_deploy/helper'
 
 if ARGV[0] == "init"
   UobDeploy.init
