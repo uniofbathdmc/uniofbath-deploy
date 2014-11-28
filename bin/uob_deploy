@@ -4,7 +4,7 @@ require 'uob_deploy/helper'
 
 if ARGV[0] == "init"
   UobDeploy.init
-elsif ARGV[0] == "new"
+elsif ARGV[0] == "gen" || ARGV[0] == "generate"
   UobDeploy.generate
 else
   puts "Usage:"
