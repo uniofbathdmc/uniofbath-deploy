@@ -2,10 +2,12 @@
 
 require 'uob_deploy'
 
-if ARGV[0] == "hi"
-  # FirstGem.hi
-elsif ARGV[0] == "bye"
-  # FirstGem.bye
+if ARGV[0] == "init"
+  UobDeploy.init
+elsif ARGV[0] == "new"
+  UobDeploy.new
 else
-  puts "usage: hi bye"
+  puts "Usage:"
+  puts "init -- create deploy.rb and environment setup"
+  puts "new -- create a new environment file"
 end
