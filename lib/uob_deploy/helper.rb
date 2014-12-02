@@ -1,7 +1,6 @@
 require 'fileutils'
 
 class UobDeploy
-
   # application locations
   @config_dir = 'config'
   @deploy_dir = File.join(@config_dir, 'deployments')
@@ -27,16 +26,16 @@ class UobDeploy
     FileUtils.mkdir_p(@deploy_dir)
 
     puts "Creating #{@unicorn_deploy}"
-    unless File.exists?(@unicorn_deploy)
+    unless File.exist?(@unicorn_deploy)
       FileUtils.cp(@unicorn_template, @unicorn_deploy)
     end
 
     puts "Creating #{@environment_deploy}"
-    unless File.exists?(@environment_deploy)
+    unless File.exist?(@environment_deploy)
       FileUtils.cp(@environment_template, @environment_deploy)
     end
 
-    puts "Done"
+    puts 'Done'
   end
 
   # create a new environment file
@@ -45,10 +44,10 @@ class UobDeploy
     FileUtils.mkdir_p(@deploy_dir)
 
     puts "Creating #{@new_environment_deploy}"
-    unless File.exists?(@new_environment_deploy)
+    unless File.exist?(@new_environment_deploy)
       FileUtils.cp(@environment_template, @new_environment_deploy)
     end
 
-    puts "Done"
+    puts 'Done'
   end
 end

@@ -3,7 +3,7 @@ task :setup do
   invoke :create_paths
 end
 
-desc "Deploys the current version to the server"
+desc 'Deploys the current version to the server'
 task :deploy do
   deploy do
     invoke :'git:clone'
@@ -39,18 +39,18 @@ task :create_paths do
   queue echo_cmd "chmod g+rx,u+rwx #{config_path}"
 
   queue 'echo "-----> Create shared paths"'
-  shared_dirs = shared_paths.map { |file|
+  shared_dirs = shared_paths.map do |file|
     # this is a path if no extension
     # otherwise, we need to lose the filename
     path = "#{deploy_to}/#{shared_path}/#{file}"
-    if (File.extname(path).empty?)
+    if File.extname(path).empty?
       path
     else
       File.dirname(path)
     end
-  }.uniq
+  end.uniq
 
-  cmds = shared_dirs.map do |dir|
+  shared_dirs.map do |dir|
     queue echo_cmd "mkdir -p #{dir}"
     queue echo_cmd "chmod g+rx,u+rwx #{dir}"
   end
@@ -60,7 +60,7 @@ task :create_paths do
 end
 
 namespace :unicorn do
-  desc "Create and upload unicorn config file"
+  desc 'Create and upload unicorn config file'
   task :config do
     upload_template
   end
@@ -68,10 +68,10 @@ end
 
 def upload_template
   contents = parse_template
-  queue %{echo "-----> Put unicorn file at #{unicorn_deploy_config}"}
-  queue %{echo "#{contents}" > #{unicorn_deploy_config}}
+  queue %(echo "-----> Put unicorn file at #{unicorn_deploy_config}")
+  queue %(echo "#{contents}" > #{unicorn_deploy_config})
 end
 
 def parse_template
-  erb("#{unicorn_deploy_template}").gsub('"','\\"').gsub('`','\\\\`').gsub('$','\\\\$')
+  erb("#{unicorn_deploy_template}").gsub('"', '\\"').gsub('`', '\\\\`').gsub('$', '\\\\$')
 end
