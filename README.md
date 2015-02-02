@@ -3,17 +3,12 @@ uob-deploy
 
 Gem for Mina deployment scripts
 
-### To use
+### Docs
 
-* Add to Gemfile:
+See https://wiki.bath.ac.uk/display/webservices/Ruby+deployment+Gem
+
+* Add to Gemfile with oAuth key:
 ```
 gem 'uob_deploy', git: 'https://b4172fb971070096d38c12e67e0d52bddaf54698:x-oauth-basic@github.bath.ac.uk/digital/uob-deploy.git', require: false, group: :development
 ```
-* `bundle install`
-* Create the necessary config files: `uob_deploy init`
-* Update the `repository` variable in `config/deploy.rb`
-* Update the settings in the build environment `config/deployments/digilin01.rb`
-* Ready to Mina!
 
-### Optional
-* Create a new deployment file: `uob_deploy new`
