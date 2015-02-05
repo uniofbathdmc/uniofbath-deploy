@@ -1,14 +1,16 @@
-uob-deploy
+uniofbath-deploy
 ==========
 
 Gem for Mina deployment scripts
 
-### Docs
+### Helper usage
 
-See https://wiki.bath.ac.uk/display/webservices/Ruby+deployment+Gem
+`uniofbath_deploy init` - create config/deploy.rb and a basic config/deployments/digilin01.rb
+`uniofbath_deploy generate` - create a new deployment file config/deployments/new.rb which can be renamed
 
-* Add to Gemfile with oAuth key:
-```
-gem 'uob_deploy', git: 'https://a1051d6350a61f7908e23e38e5a663b52f892bce:x-oauth-basic@github.bath.ac.uk/digital/uob-deploy.git', require: false, group: :development
-```
+* Run the `uniofbath_deploy init`, then edit `deploy.rb` to `repository` (and `default_server` if necessary).
+* Rename `digilin01.rb` file to your environment name and update the contents
 
+The `generate` command can be used to create additional deployment files if needed.
+
+See also https://wiki.bath.ac.uk/display/webservices/Ruby+deployment+Gem

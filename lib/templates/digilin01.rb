@@ -1,11 +1,11 @@
 namespace :env do
   task :digilin01 do
-    set :branch,       'staging'               # branch to deploy
-    set :rails_env,    'development'           # rails environment to use
-    set :domain,       'digilin-01.bath.ac.uk' # machine
-    set :user,         'ma1twn-test'           # user to deploy as
-    set :deploy_to,    '/home/ma1twn-test'     # home directory of user
-    set :app_port,     3055                    # port to run on
+    set :branch,       'staging'                 # branch to deploy
+    set :rails_env,    'development'             # rails environment to use
+    set :domain,       'digilin-01.bath.ac.uk'   # machine
+    set :user,         'application-user'        # user to deploy as
+    set :deploy_to,    '/home/application-user'  # home directory of user
+    set :app_port,     3055                      # port to run on
 
     # uncomment and add to this if you wish to change defaults
     # set :shared_paths, ['tmp', 'log', 'config/unicorn.rb']

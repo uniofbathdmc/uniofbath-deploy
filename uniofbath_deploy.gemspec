@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
-  spec.name        = 'uob_deploy'
-  spec.version     = '0.0.5'
-  spec.executables << 'uob_deploy'
+  spec.name        = 'uniofbath_deploy'
+  spec.version     = '0.0.6'
+  spec.executables << 'uniofbath_deploy'
   spec.date        = '2014-11-28'
   spec.summary     = 'Manage build scripts for a Ruby application'
   spec.description = 'Create and maintain the mina deployment scripts'
