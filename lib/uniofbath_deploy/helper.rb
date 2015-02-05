@@ -1,6 +1,6 @@
 require 'fileutils'
 
-class UobDeploy
+class UniOfBathDeploy
   # application locations
   @config_dir = 'config'
   @deploy_dir = File.join(@config_dir, 'deployments')
