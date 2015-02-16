@@ -2,6 +2,7 @@
 task :defaults do
   # system settings
   set_default :group, 'dmc-system'
+  set_default :bundle_gemfile, "#{deploy_to}/#{current_path}/Gemfile"
 
   # unicorn settings
   set_default :unicorn_env, rails_env
