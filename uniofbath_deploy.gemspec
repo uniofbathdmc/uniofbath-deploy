@@ -14,4 +14,5 @@ Gem::Specification.new do |spec|
   # we need mina to use these scripts
   spec.add_dependency 'mina', '0.3.1'
   spec.add_dependency 'mina-unicorn', '0.0.3'
+  spec.add_dependency 'redis', '3.2.1'
 end
