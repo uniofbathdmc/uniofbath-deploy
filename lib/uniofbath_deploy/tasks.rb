@@ -10,7 +10,10 @@ task :deploy do
     invoke :'deploy:link_shared_paths'
     invoke :'unicorn:config'
     invoke :'bundle:install'
-    invoke :'rails:db_migrate'
+
+    # skip migrate if migrate=false specified
+    invoke :'rails:db_migrate' unless ENV['migrate'] == 'false'
+
     invoke :'deploy:cleanup'
 
     to :launch do

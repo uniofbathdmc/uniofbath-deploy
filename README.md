@@ -3,6 +3,16 @@ uniofbath-deploy
 
 Gem for Mina deployment scripts
 
+### Script usage
+
+* `mina setup` - set up the target server
+* `mina deploy` - deploy to the target server and start application
+
+*Options:*
+
+* `to=staging` - target the specified environment
+* `migrate=false` - do not run db:migrate (in deploy)
+
 ### Helper usage
 
 `uniofbath_deploy init` - create config/deploy.rb and a basic config/deployments/digilin01.rb
