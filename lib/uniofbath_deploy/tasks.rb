@@ -12,8 +12,7 @@ task :deploy do
     invoke :'bundle:install'
 
     # skip migrate if migrate=false specified
-    migrate = ENV['migrate'] == 'false' ? false : true
-    invoke :'rails:db_migrate' if migrate
+    invoke :'rails:db_migrate' unless ENV['migrate'] == 'false'
 
     invoke :'deploy:cleanup'
 
