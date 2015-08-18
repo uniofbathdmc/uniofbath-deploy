@@ -9,6 +9,7 @@ task :deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'unicorn:config'
+    invoke :'create_symlinks'
     invoke :'bundle:install'
 
     # skip migrate if migrate=false specified
@@ -78,4 +79,11 @@ end
 
 def parse_template
   erb("#{unicorn_deploy_template}").gsub('"', '\\"').gsub('`', '\\\\`').gsub('$', '\\\\$')
+end
+
+task :create_symlinks do
+  queue 'echo "-----> Create symlinks"'
+  symlink_paths.each do |symlink_path|
+    queue echo_cmd "ln -s #{symlink_path[0]} #{symlink_path[1]}"
+  end
 end
