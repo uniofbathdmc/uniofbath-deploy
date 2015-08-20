@@ -13,6 +13,18 @@ Gem for Mina deployment scripts
 * `to=staging` - target the specified environment
 * `migrate=false` - do not run db:migrate (in deploy)
 
+### Settings
+
+In addition to Mina settings you can set:
+
+* `:symlink_paths`
+
+Example (to... from):
+
+```
+set :symlink_paths, [['/tmp/attachments', 'public/attachments'], ['/tmp/foo', 'public/foo']]
+```
+
 ### Helper usage
 
 `uniofbath_deploy init` - create config/deploy.rb and a basic config/deployments/digilin01.rb

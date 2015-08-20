@@ -16,4 +16,5 @@ task :defaults do
   set_default :config_path, File.join(deploy_to, shared_path, 'config')
   set_default :unicorn_deploy_template, File.join(File.dirname(__FILE__), '../templates/unicorn.rb.erb')
   set_default :unicorn_deploy_config, File.join(config_path, 'unicorn.rb')
+  set_default :symlink_paths, []
 end
