@@ -1,6 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name        = 'uniofbath_deploy'
-  spec.version     = '0.0.8'
+  spec.version     = '0.0.9'
+  spec.files       = `git ls-files -z`.split("\x0")
   spec.executables << 'uniofbath_deploy'
   spec.date        = '2014-11-28'
   spec.summary     = 'Manage build scripts for a Ruby application'
