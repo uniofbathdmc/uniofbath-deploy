@@ -12,8 +12,11 @@ task :deploy do
     invoke :'create_symlinks'
     invoke :'bundle:install'
 
-    # skip migrate if migrate=false specified
+    # Skip migrate if migrate=false specified
     invoke :'rails:db_migrate' unless ENV['migrate'] == 'false'
+
+    # Precompile assets if precompile=true specified
+    invoke :'rails:assets_precompile' if ENV['precompile'] == 'true'
 
     invoke :'deploy:cleanup'
 
@@ -21,14 +24,14 @@ task :deploy do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
 
-      # will either start unicorn or silently fail (if already running)
+      # Will either start unicorn or silently fail (if already running)
       invoke :'unicorn:start'
-      # can't start a started server and can't restart a stopped server
-      # so need both to cover deploy as well as REdeploy
+      # Can't start a started server and can't restart a stopped server
+      # So need both to cover deploy as well as REdeploy
       invoke :'unicorn:restart'
 
-      # seemlessly restart - 12113 is the PID
-      # queue "kill -s USR2 12113"
+      # Seemlessly restart - 12113 is the PID
+      # Queue "kill -s USR2 12113"
     end
   end
 end
@@ -45,8 +48,8 @@ task :create_paths do
 
   queue 'echo "-----> Create shared paths"'
   shared_dirs = shared_paths.map do |file|
-    # this is a path if no extension
-    # otherwise, we need to lose the filename
+    # This is a path if no extension
+    # Otherwise, we need to lose the filename
     path = "#{deploy_to}/#{shared_path}/#{file}"
     if File.extname(path).empty?
       path
