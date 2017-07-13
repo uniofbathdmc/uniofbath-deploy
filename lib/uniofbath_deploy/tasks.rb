@@ -18,6 +18,9 @@ task :deploy do
     # Precompile assets if precompile=true specified
     invoke :'rails:assets_precompile' if ENV['precompile'] == 'true'
 
+    # Kick off delayed_job daemon if delayed_job=true specified
+    queue 'bin/delayed_job start' if ENV['delayed_job'] == 'true'
+
     invoke :'deploy:cleanup'
 
     to :launch do
