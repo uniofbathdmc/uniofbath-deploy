@@ -13,6 +13,7 @@ Gem for Mina deployment scripts
 * `to=staging` - target the specified environment
 * `migrate=false` - do not run db:migrate (in deploy)
 * `precompile=true` - precompile assets for the asset pipeline (in deploy)
+* `delayed_job=true` - launch delayed_job worker daemon (in deploy)
 
 ### Settings
 
